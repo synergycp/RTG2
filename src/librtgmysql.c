@@ -159,9 +159,9 @@ int __db_insert(char *table, int iid, unsigned long long insert_val, double inse
 
 	table_esc = escape_string(table_esc, table);
 
-	asprintf(&query, 
-		"INSERT INTO `%s` (id,dtime,counter,rate) VALUES (%i,NOW(),%llu,%.6f)",
-		table_esc, iid, insert_val, insert_rate);
+	asprintf(&query,
+		"INSERT INTO `%s` (id,dtime,counter) VALUES (%i,NOW(),%llu)",
+		table_esc, iid, insert_val);
 
 	free(table_esc);
 
@@ -190,11 +190,11 @@ int __db_commit() {
     MYSQL *mysql = getmysql();
 
     clock_gettime(CLOCK_REALTIME,&ts1);
-    
+
     com_ret = mysql_commit(mysql);
 
     clock_gettime(CLOCK_REALTIME,&ts2);
-    
+
     ms_took = (unsigned int)((ts2.tv_sec * 1000000000 + ts2.tv_nsec) - (ts1.tv_sec * 1000000000 + ts1.tv_nsec)) / 1000000;
     debug(HIGH,"Commit took %d milliseconds at [%d][%d][%d][%d]\n",ms_took,ts1.tv_sec,ts1.tv_nsec,ts2.tv_sec,ts2.tv_nsec);
 
@@ -207,7 +207,7 @@ long long __db_intSpeed(char *query) {
 long __db_intSpeed(char *query) {
 #endif
     MYSQL *mysql = getmysql();
-    int result; 
+    int result;
     MYSQL_RES *result2;
     MYSQL_ROW *row;
 
@@ -215,7 +215,7 @@ long __db_intSpeed(char *query) {
 
     if (result == 0) {
         result2 = mysql_store_result(mysql);
-    } else { 
+    } else {
         debug(LOW, "MySQL error: %s\n", mysql_error(mysql));
         return FALSE;
     }
@@ -279,4 +279,3 @@ int __db_populate(char *query, data_obj_t *DO) {
 
     return stat;
 }
-
