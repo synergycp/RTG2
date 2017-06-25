@@ -160,7 +160,7 @@ int __db_insert(char *table, int iid, unsigned long long insert_val, double inse
 	table_esc = escape_string(table_esc, table);
 
 	asprintf(&query,
-		"INSERT INTO `%s` (id,dtime,counter) VALUES (%i,NOW(),%llu)",
+		"INSERT INTO `%s` (id,dtime,counter) VALUES (%i,UNIX_TIMESTAMP(),%llu)",
 		table_esc, iid, insert_val);
 
 	free(table_esc);
