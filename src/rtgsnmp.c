@@ -17,8 +17,8 @@
  #include "mib.h"
  #include "snmp.h"
 #else
- #include "net-snmp-config.h"
- #include "net-snmp-includes.h"
+ #include "net-snmp/net-snmp-config.h"
+ #include "net-snmp/net-snmp-includes.h"
 #endif
 
 extern target_t *current;
