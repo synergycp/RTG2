@@ -262,7 +262,7 @@ DBD_DRIVER="mysql"
 LDFLAGS="-L$MYSQL_LIB_DIR $LDFLAGS"
 CPPFLAGS="$CPPFLAGS -I$MYSQL_INC_DIR"
 
-AC_CHECK_LIB(mysqlclient_r, my_thread_init,
+AC_CHECK_LIB(mysqlclient_r, mysql_thread_init,
        [ LIBS="-lmysqlclient_r $LIBS"
        ltlibraries="librtgmysql.la $ltlibraries" ],
        AC_MSG_WARN(Cannot link with thread-safe MySQL lib (libmysqlclient_r)))
