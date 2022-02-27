@@ -14,9 +14,6 @@ stats_t stats =
 char *target_file = NULL;
 target_t *current = NULL;
 char *pid_file = PIDFILE;
-#if HAVE_MYSQL
-  MYSQL mysql;
-#endif
 int entries = 0;
 
 /* Globals */
@@ -141,8 +138,6 @@ int main(int argc, char *argv[]) {
     /* Initialize the SNMP session */
 	debug(LOW, "Initializing SNMP (port %d).\n", set->snmp_port);
     init_snmp("RTG");
-
-    /* Attempt to connect to the MySQL Database */
 
 	debug(HIGH, "\nStarting threads.\n");
     for (i = 0; i < set->threads; i++) {
