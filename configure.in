@@ -229,7 +229,8 @@ else
   done
 fi
 
-for i in $MYSQL_DIR /usr /usr/local /usr/local/mysql; do
+for i in $MYSQL_DIR /usr /usr/local /usr/local/mysql /usr/include/mariadb; do
+   test -f $i/mysql.h                            && MYSQL_INC_DIR=$i
    test -f $i/include/mysql.h                    && MYSQL_INC_DIR=$i/include
    test -f $i/include/mysql/mysql.h              && MYSQL_INC_DIR=$i/include/mysql
    test -f $i/mysql/include/mysql.h              && MYSQL_INC_DIR=$i/mysql/include
