@@ -1,3 +1,5 @@
+# Deprecated and unused, entirely replaced by Python-based daemon that's fastier and easier to maintain with less 20+ year old technical debt.
+
 [![Build Status](https://travis-ci.org/Prophidys/RTG2.svg?branch=master)](https://travis-ci.org/Prophidys/RTG2)
 
 
